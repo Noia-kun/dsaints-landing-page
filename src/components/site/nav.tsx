@@ -19,7 +19,8 @@ export function Nav() {
       >
         <a
           href="#top"
-          className="font-display text-lg tracking-[0.18em] text-foreground sm:text-xl"
+          className="font-logo inline-block bg-[#FFF4CD] px-3 py-1 text-lg tracking-[0.12em] text-chocolate sm:px-4 sm:text-xl"
+          style={{ borderRadius: "3px" }}
         >
           D&apos;SAINTS
         </a>

@@ -89,7 +89,7 @@ function Hero() {
         </motion.p>
 
         <motion.h1
-          className="mt-8 font-display text-[19vw] leading-[0.82] font-light tracking-[0.02em] text-foreground sm:text-[15vw] lg:text-[11rem]"
+          className="mt-8 font-logo text-[19vw] leading-[0.82] font-light tracking-[0.02em] text-foreground sm:text-[15vw] lg:text-[11rem]"
           initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 1.08, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.6, delay: 0.35, ease: [0.19, 1, 0.22, 1] }}
@@ -646,7 +646,12 @@ function Invitation() {
         </div>
 
         <div className="mt-20 text-center">
-          <p className="font-display text-4xl tracking-[0.14em] sm:text-6xl">D&apos;SAINTS</p>
+          <p
+            className="font-logo inline-block bg-[#FFF4CD] px-4 py-1.5 text-4xl tracking-[0.1em] text-chocolate sm:px-5 sm:text-6xl"
+            style={{ borderRadius: "3px" }}
+          >
+            D&apos;SAINTS
+          </p>
           <p className="mt-3 text-[0.65rem] tracking-[0.4em] text-cream/60">EST. 2020</p>
           <p className="mt-6">
             <span className="signature-line text-sm text-cream/60">{SIGNATURE}</span>
