@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { Nav } from "@/components/site/nav";
 import { Reveal, StaggerList, ProductImage } from "@/components/site/reveal";
@@ -120,23 +120,101 @@ function Hero() {
   );
 }
 
-function FirstMoment() {
+function TwineTag({
+  text,
+  progress,
+  at,
+  align,
+}: {
+  text: string;
+  progress: MotionValue<number>;
+  at: number;
+  align: "left" | "center" | "right";
+}) {
+  const opacity = useTransform(progress, [at - 0.06, at + 0.02], [0, 1]);
+  const y = useTransform(progress, [at - 0.06, at + 0.02], [10, 0]);
   return (
-    <section className="bg-cream px-6 py-28 sm:py-40">
-      <div className="mx-auto max-w-4xl text-center">
-        <Reveal as="h2" className="font-display text-3xl leading-tight sm:text-5xl">
-          WHAT MAKES A MOMENT MEMORABLE?
-        </Reveal>
-        <StaggerList
-          className="mt-14 space-y-5"
-          lineClassName="font-display text-2xl text-espresso sm:text-4xl"
-          lines={["A familiar taste.", "A table full of people.", "Something worth bringing home."]}
-        />
-        <Reveal delay={0.4} className="mt-16">
-          <Signature className="text-base sm:text-lg" />
-        </Reveal>
-      </div>
-    </section>
+    <motion.p
+      style={{ opacity, y }}
+      className={`max-w-[10rem] font-display text-lg text-espresso sm:max-w-[12rem] sm:text-2xl ${
+        align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center"
+      }`}
+    >
+      {text}
+    </motion.p>
+  );
+}
+
+function FirstMoment() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+
+  const headlineOpacity = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
+  const headlineY = useTransform(scrollYProgress, [0, 0.12], [16, 0]);
+  const twineProgress = useTransform(scrollYProgress, [0.14, 0.8], [0, 1]);
+  const sigOpacity = useTransform(scrollYProgress, [0.85, 1], [0, 1]);
+  const sigY = useTransform(scrollYProgress, [0.85, 1], [14, 0]);
+
+  const lines: { text: string; at: number; align: "left" | "center" | "right" }[] = [
+    { text: "A familiar taste.", at: 0.3, align: "left" },
+    { text: "A table full of people.", at: 0.52, align: "center" },
+    { text: "Something worth bringing home.", at: 0.74, align: "right" },
+  ];
+
+  return (
+    <>
+      {/* Desktop/tablet: pinned scroll-scrubbed twine reveal */}
+      <section ref={ref} className="relative hidden bg-cream lg:block" style={{ height: "180vh" }}>
+        <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-6">
+          <motion.h2
+            style={{ opacity: headlineOpacity, y: headlineY }}
+            className="max-w-3xl text-center font-display text-3xl leading-tight sm:text-5xl"
+          >
+            WHAT MAKES A MOMENT MEMORABLE?
+          </motion.h2>
+
+          <div className="relative mt-20 w-full max-w-4xl">
+            <svg viewBox="0 0 1000 4" preserveAspectRatio="none" className="h-1 w-full text-espresso/40" aria-hidden="true">
+              <motion.line
+                x1="0"
+                y1="2"
+                x2="1000"
+                y2="2"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                style={{ pathLength: twineProgress }}
+              />
+            </svg>
+            <div className="relative mt-4 flex justify-between gap-4">
+              {lines.map((l) => (
+                <TwineTag key={l.text} text={l.text} progress={scrollYProgress} at={l.at} align={l.align} />
+              ))}
+            </div>
+          </div>
+
+          <motion.div style={{ opacity: sigOpacity, y: sigY }} className="mt-20">
+            <Signature className="text-base sm:text-lg" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mobile: simple stagger, no pinning (touch-scroll pinning can feel janky at narrow widths) */}
+      <section className="bg-cream px-6 py-28 sm:py-40 lg:hidden">
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal as="h2" className="font-display text-3xl leading-tight sm:text-5xl">
+            WHAT MAKES A MOMENT MEMORABLE?
+          </Reveal>
+          <StaggerList
+            className="mt-14 space-y-5"
+            lineClassName="font-display text-2xl text-espresso sm:text-4xl"
+            lines={["A familiar taste.", "A table full of people.", "Something worth bringing home."]}
+          />
+          <Reveal delay={0.4} className="mt-16">
+            <Signature className="text-base sm:text-lg" />
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 }
 
