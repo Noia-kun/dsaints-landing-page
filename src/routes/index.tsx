@@ -218,6 +218,45 @@ function FirstMoment() {
   );
 }
 
+function TiltPhoto({
+  src,
+  alt,
+  width,
+  height,
+  className,
+  fromX = 0,
+  fromY = 60,
+  fromRotate = 0,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  fromX?: number;
+  fromY?: number;
+  fromRotate?: number;
+}) {
+  const ref = useRef<HTMLImageElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "start 0.35"] });
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const x = useTransform(scrollYProgress, [0, 1], [fromX, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [fromY, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [fromRotate, 0]);
+
+  return (
+    <motion.img
+      ref={ref}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+      style={{ opacity, x, y, rotate }}
+      className={className}
+    />
+  );
+}
 function Story() {
   return (
     <section id="story" className="bg-ivory px-6 py-28 sm:py-40">
@@ -238,36 +277,36 @@ function Story() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-7">
-          <Reveal className="col-span-1 row-span-2 self-start">
-            <img
-              src={story3}
-              alt="Coffee cup and a cookie being dipped"
-              width={1236}
-              height={2048}
-              loading="lazy"
-              className="w-full object-cover"
-            />
-          </Reveal>
-          <Reveal delay={0.15} className="col-span-1 mt-10">
-            <img
-              src={story1}
-              alt="Hands passing a plate of dessert across a shared table"
-              width={900}
-              height={1200}
-              loading="lazy"
-              className="w-full object-cover"
-            />
-          </Reveal>
-          <Reveal delay={0.3} className="col-span-1 pr-8">
-            <img
-              src={story2}
-              alt="A dessert box wrapped in plastic, pastries inside"
-              width={1200}
-              height={900}
-              loading="lazy"
-              className="w-full object-cover"
-            />
-          </Reveal>
+          <TiltPhoto
+            src={story3}
+            alt="Coffee cup and a cookie being dipped"
+            width={1236}
+            height={2048}
+            className="col-span-1 row-span-2 w-full self-start object-cover"
+            fromX={-40}
+            fromY={50}
+            fromRotate={-5}
+          />
+          <TiltPhoto
+            src={story1}
+            alt="Hands passing a plate of dessert across a shared table"
+            width={900}
+            height={1200}
+            className="col-span-1 mt-10 w-full object-cover"
+            fromX={40}
+            fromY={50}
+            fromRotate={4}
+          />
+          <TiltPhoto
+            src={story2}
+            alt="A dessert box wrapped in plastic, pastries inside"
+            width={1200}
+            height={900}
+            className="col-span-1 pr-8 w-full object-cover"
+            fromX={0}
+            fromY={70}
+            fromRotate={-3}
+          />
         </div>
       </div>
     </section>
