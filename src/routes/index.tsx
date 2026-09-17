@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { Nav } from "@/components/site/nav";
@@ -313,28 +313,59 @@ function Story() {
   );
 }
 
+function BlurReveal({
+  children,
+  className,
+  fromBlur = 8,
+  fromScale = 0.96,
+  fromSkew = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  fromBlur?: number;
+  fromScale?: number;
+  fromSkew?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "start 0.45"] });
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const blur = useTransform(scrollYProgress, [0, 1], [fromBlur, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [fromScale, 1]);
+  const skew = useTransform(scrollYProgress, [0, 1], [fromSkew, 0]);
+  const filter = useTransform(blur, (b) => `blur(${b}px)`);
+
+  return (
+    <motion.div ref={ref} style={{ opacity, scale, skewX: skew, filter }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 function Philosophy() {
   return (
     <section className="grain bg-chocolate px-6 py-32 text-ivory sm:py-48">
       <div className="mx-auto max-w-4xl">
-        <Reveal direction="up" as="h2" className="font-display text-4xl leading-tight sm:text-6xl">
+        <BlurReveal
+          fromBlur={10}
+          fromScale={0.94}
+          fromSkew={-2}
+          className="font-display text-4xl leading-tight sm:text-6xl"
+        >
           Not everything perfect is planned.
-        </Reveal>
-        <Reveal
-          direction="left"
-          delay={0.15}
+        </BlurReveal>
+        <BlurReveal
+          fromBlur={8}
+          fromScale={0.96}
+          fromSkew={2}
           className="mt-10 max-w-2xl font-display text-2xl leading-snug text-cream/85 sm:text-3xl"
         >
-          <p>
-            Because sometimes, the best recipes come from letting go, letting mistakes happen.
-          </p>
-        </Reveal>
-        <Reveal direction="right" delay={0.3} className="mt-10">
+          <p>Because sometimes, the best recipes come from letting go, letting mistakes happen.</p>
+        </BlurReveal>
+        <BlurReveal fromBlur={4} fromScale={0.98} className="mt-10">
           <p className="text-sm tracking-[0.3em] text-cream/70">— D&apos;SAINTS</p>
-        </Reveal>
-        <Reveal delay={0.5} className="mt-20">
+        </BlurReveal>
+        <BlurReveal fromBlur={6} fromScale={0.97} className="mt-20">
           <span className="signature-line text-sm text-cream/60">{SIGNATURE}</span>
-        </Reveal>
+        </BlurReveal>
       </div>
     </section>
   );
