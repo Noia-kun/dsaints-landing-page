@@ -327,7 +327,7 @@ function BlurReveal({
   fromSkew?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "start 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "start 0.7"] });
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const blur = useTransform(scrollYProgress, [0, 1], [fromBlur, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [fromScale, 1]);
