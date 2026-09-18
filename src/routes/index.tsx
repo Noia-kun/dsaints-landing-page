@@ -483,6 +483,35 @@ function ClipReveal({
     </div>
   );
 }
+function HandwrittenText({ text, className }: { text: string; className?: string }) {
+  const words = text.split(" ");
+  return (
+    <motion.p
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, margin: "-10% 0px -10% 0px" }}
+    >
+      {words.map((w, i) => (
+        <span key={i} className="inline-block overflow-hidden align-baseline">
+          <motion.span
+            className="inline-block whitespace-pre"
+            variants={{
+              hidden: { clipPath: "inset(0 100% 0 0)" },
+              visible: {
+                clipPath: "inset(0 0% 0 0)",
+                transition: { duration: 0.15, delay: i * 0.09, ease: "easeOut" },
+              },
+            }}
+          >
+            {w}
+          </motion.span>
+          {i < words.length - 1 && "\u00A0"}
+        </span>
+      ))}
+    </motion.p>
+  );
+}
 function Cakes() {
   return (
     <section id="cakes" className="bg-ivory px-6 py-28 sm:py-40">
@@ -521,11 +550,12 @@ function Cakes() {
             </p>
             <PriceTickets prices={["70 QAR", "45 QAR", "150 QAR"]} className="mt-6" />
             <Reveal delay={0.2} className="mt-8 max-w-md">
-              <div className="note-card">
+              <div className="note-card mt-8 max-w-md">
                 <span className="note-card-tab">note</span>
-                <p className="font-display text-xl italic text-espresso">
-                  Did you know? Sans Rival means &ldquo;without rival.&rdquo;
-                </p>
+                <HandwrittenText
+                  text="Did you know? Sans Rival means “without rival.”"
+                  className="font-display text-xl italic text-espresso"
+                />
               </div>
             </Reveal>
           </article>
