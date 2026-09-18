@@ -450,6 +450,39 @@ function SignatureCollection() {
   );
 }
 
+function ClipReveal({
+  src,
+  alt,
+  width,
+  height,
+  className,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "start 0.4"] });
+  const radius = useTransform(scrollYProgress, [0, 1], [0, 75]);
+  const clipPath = useTransform(radius, (r) => `circle(${r}% at 50% 50%)`);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
+
+  return (
+    <div ref={ref} className={`overflow-hidden ${className ?? ""}`}>
+      <motion.img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        style={{ clipPath, scale }}
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
 function Cakes() {
   return (
     <section id="cakes" className="bg-ivory px-6 py-28 sm:py-40">
@@ -458,12 +491,12 @@ function Cakes() {
 
         <div className="mt-16 grid gap-20 md:grid-cols-2 md:gap-12">
           <article>
-            <ProductImage
+            <ClipReveal
               src={chocolateCakeImg}
               alt="Slice of rich layered chocolate cake with glossy ganache"
               width={1200}
               height={1400}
-              className="aspect-4/5 w-full object-cover"
+              className="aspect-4/5 w-full"
             />
             <h3 className="mt-8 font-display text-4xl sm:text-5xl">Chocolate Dream Cake</h3>
             <p className="mt-5 max-w-md text-xs leading-relaxed tracking-[0.14em] text-espresso">
@@ -474,12 +507,12 @@ function Cakes() {
           </article>
 
           <article className="md:pt-24">
-            <ProductImage
+            <ClipReveal
               src={sansrivalImg}
               alt="Sans rival cake with cashew meringue layers and roasted cashews"
               width={1200}
               height={1400}
-              className="aspect-4/5 w-full object-cover"
+              className="aspect-4/5 w-full"
             />
             <h3 className="mt-8 font-display text-4xl sm:text-5xl">Sansrival Cake</h3>
             <p className="mt-5 max-w-md text-xs leading-relaxed tracking-[0.14em] text-espresso">
