@@ -6,6 +6,7 @@ import { Nav } from "@/components/site/nav";
 import { Reveal, StaggerList, ProductImage } from "@/components/site/reveal";
 import { Signature, SIGNATURE } from "@/components/site/signature";
 import { OrderTag, PriceTickets, StampLink, TwineRule, ORDER_HREF } from "@/components/site/ui";
+import { Parallax } from "@/components/site/parallax";
 
 import heroImg from "@/assets/hero.jpg";
 import heroVideo from "@/assets/hero.mp4";
@@ -259,7 +260,8 @@ function TiltPhoto({
 }
 function Story() {
   return (
-    <section id="story" className="bg-ivory px-6 py-28 sm:py-40">
+    <section id="story" className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
+      <Parallax />
       <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5 lg:pt-10">
           <Reveal as="h2" className="font-display text-5xl tracking-[0.06em] sm:text-7xl">
@@ -343,6 +345,7 @@ function BlurReveal({
 function Philosophy() {
   return (
     <section className="grain bg-chocolate px-6 py-32 text-ivory sm:py-48">
+      <Parallax />
       <div className="mx-auto max-w-4xl">
         <BlurReveal
           fromBlur={10}
@@ -514,7 +517,8 @@ function HandwrittenText({ text, className }: { text: string; className?: string
 }
 function Cakes() {
   return (
-    <section id="cakes" className="bg-ivory px-6 py-28 sm:py-40">
+    <section id="cakes" className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
+      <Parallax sparse />
       <div className="mx-auto max-w-6xl">
         <p className={label}>S P E C I A L T Y&nbsp;&nbsp;C A K E S</p>
 
@@ -603,7 +607,8 @@ function Favorites() {
   const flavor = flavors[active]!;
 
   return (
-    <section id="favorites" className="bg-cream px-6 py-28 sm:py-40">
+    <section id="favorites" className="relative isolate overflow-hidden bg-cream px-6 py-28 sm:py-40">
+      <Parallax sparse />
       <div className="mx-auto max-w-6xl">
         <p className={label}>F A V O R I T E S</p>
         <Reveal as="h2" className="mt-8 font-display text-5xl sm:text-7xl">
@@ -701,7 +706,8 @@ const comforts: Comfort[] = [
 
 function Comforts() {
   return (
-    <section className="bg-ivory px-6 py-28 sm:py-40">
+    <section className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
+      <Parallax sparse />
       <div className="mx-auto max-w-6xl">
         <p className={label}>T H E&nbsp;&nbsp;C O M F O R T S</p>
         <div className="mt-14 grid gap-x-12 gap-y-16 md:grid-cols-3">
@@ -763,6 +769,7 @@ function LittleThings() {
 function Distance() {
   return (
     <section className="grain bg-beige px-6 py-28 text-center sm:py-40">
+      <Parallax />
       <div className="mx-auto max-w-3xl">
         <Reveal as="h2" className="font-display text-5xl sm:text-8xl">
           BRING ME SOME.
@@ -798,6 +805,7 @@ function Connection() {
 function Invitation() {
   return (
     <footer id="contact" className="grain bg-chocolate px-6 py-28 text-ivory sm:py-36">
+      <Parallax />
       <div className="mx-auto max-w-5xl">
         <Reveal as="h2" className="font-display text-4xl leading-tight sm:text-7xl">
           MAKE THE MOMENT COUNT.
