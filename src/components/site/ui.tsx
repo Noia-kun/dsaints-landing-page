@@ -123,7 +123,7 @@ export function OrderTag() {
       >
         <a
           href={ORDER_HREF}
-          className="pointer-events-auto group inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-5 py-3 text-[0.62rem] leading-7 tracking-[0.26em] text-foreground uppercase backdrop-blur-md transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-3"
+          className="pointer-events-auto group inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-3.5 py-3 min-[400px]:px-5 text-[0.62rem] leading-7 tracking-[0.26em] text-foreground uppercase backdrop-blur-md transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-3"
         >
           <motion.span
             className="inline-flex"
@@ -138,7 +138,7 @@ export function OrderTag() {
           >
             <ShoppingBasket className="h-3.5 w-3.5" strokeWidth={1.4} aria-hidden="true" />
           </motion.span>
-          Order
+          <span className="sr-only min-[400px]:not-sr-only">Order</span>
         </a>
       </div>
     </header>
