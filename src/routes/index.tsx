@@ -261,7 +261,7 @@ function TiltPhoto({
 function Story() {
   return (
     <section id="story" className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
-      <Parallax />
+      <Parallax variant="brownie" />
       <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5 lg:pt-10">
           <Reveal as="h2" className="font-display text-5xl tracking-[0.06em] sm:text-7xl">
@@ -518,7 +518,7 @@ function HandwrittenText({ text, className }: { text: string; className?: string
 function Cakes() {
   return (
     <section id="cakes" className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
-      <Parallax sparse />
+      <Parallax sparse variant="brownie" />
       <div className="mx-auto max-w-6xl">
         <p className={label}>S P E C I A L T Y&nbsp;&nbsp;C A K E S</p>
 
@@ -707,7 +707,7 @@ const comforts: Comfort[] = [
 function Comforts() {
   return (
     <section className="relative isolate overflow-hidden bg-ivory px-6 py-28 sm:py-40">
-      <Parallax sparse />
+      <Parallax sparse variant="brownie" />
       <div className="mx-auto max-w-6xl">
         <p className={label}>T H E&nbsp;&nbsp;C O M F O R T S</p>
         <div className="mt-14 grid gap-x-12 gap-y-16 md:grid-cols-3">
