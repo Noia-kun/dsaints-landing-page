@@ -27,8 +27,23 @@ const Cookie = () => (
   </svg>
 );
 
-function Piece({ p, layer, item, i }: {
+const Brownie = () => (
+  <svg viewBox="0 0 64 64">
+    <rect x="6" y="6" width="52" height="52" rx="4" fill="#3B2418" />
+    <path
+      d="M12 20c8 6 16-6 24 0s16-6 20 2"
+      stroke="#6B4A32" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.6"
+    />
+    <g fill="#8A6248">
+      <circle cx="20" cy="38" r="3" /><circle cx="38" cy="44" r="2.5" />
+      <circle cx="46" cy="24" r="2.5" />
+    </g>
+  </svg>
+);
+
+function Piece({ p, layer, item, i, shape }: {
   p: MotionValue<number>; layer: Layer; item: [number, number, number]; i: number;
+  shape: "cookie" | "brownie";
 }) {
   const y = useTransform(p, [0, 1], [layer.d, -layer.d]);
   const [x, top, rotate] = item;
@@ -40,12 +55,14 @@ function Piece({ p, layer, item, i }: {
         width: layer.w, opacity: layer.o, filter: `blur(${layer.blur}px)`,
       }}
     >
-      {layer.cookie ? <Cookie /> : <Crumb />}
+      {layer.cookie ? shape === "brownie" ? <Brownie /> : <Cookie /> : <Crumb />}
     </motion.div>
   );
 }
 
-export function Parallax({ sparse = false }: { sparse?: boolean }) {
+export function Parallax({ sparse = false, variant = "cookie" }: {
+  sparse?: boolean; variant?: "cookie" | "brownie";
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   return (
@@ -53,7 +70,9 @@ export function Parallax({ sparse = false }: { sparse?: boolean }) {
       {LAYERS.map((l) =>
         l.items
           .slice(0, sparse ? Math.ceil(l.items.length / 2) : l.items.length)
-          .map((it, i) => <Piece key={`${l.d}-${i}`} p={scrollYProgress} layer={l} item={it} i={i} />)
+          .map((it, i) => (
+            <Piece key={`${l.d}-${i}`} p={scrollYProgress} layer={l} item={it} i={i} shape={variant} />
+          ))
       )}
     </div>
   );
