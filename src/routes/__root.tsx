@@ -8,9 +8,10 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SmoothScroll } from "../components/site/smooth-scroll";
+import { MotionConfig } from "motion/react";
 
 function NotFoundComponent() {
   return (
@@ -136,8 +137,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <MotionConfig reducedMotion="never">
+        <SmoothScroll />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </MotionConfig>
     </QueryClientProvider>
   );
 }
