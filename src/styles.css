@@ -135,10 +135,6 @@
     border-color: var(--color-border);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -157,11 +153,6 @@
     outline-offset: 3px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
 }
 
 /* Section eyebrow label: wide tracking, small sans caps */
