@@ -29,9 +29,10 @@ export function Nav() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="text-[0.68rem] tracking-[0.3em] text-muted-foreground transition-colors hover:text-foreground"
+                className="group relative text-[0.68rem] tracking-[0.3em] text-foreground/70 transition-colors hover:text-foreground"
               >
                 {l.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-foreground transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </a>
             </li>
           ))}
