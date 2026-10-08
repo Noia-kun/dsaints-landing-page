@@ -19,7 +19,7 @@ export function Nav() {
       >
         <a
           href="#top"
-          className="font-logo inline-block bg-[#FFF4CD] px-2 py-1 text-base tracking-[0.12em] text-chocolate min-[400px]:px-3 min-[400px]:text-lg sm:px-4 sm:text-xl"
+          className="font-logo inline-block bg-[#FFF4CD] px-3 py-1 text-lg tracking-[0.12em] text-chocolate transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-[#FFEEB0] sm:px-4 sm:text-xl"
           style={{ borderRadius: "3px" }}
         >
           D&apos;SAINTS
