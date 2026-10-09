@@ -123,7 +123,7 @@ export function OrderTag() {
       >
         <a
           href={ORDER_HREF}
-          className="pointer-events-auto group inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/75 px-3.5 py-3 min-[400px]:px-5 text-[0.62rem] leading-7 tracking-[0.26em] text-foreground uppercase backdrop-blur-md transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-3"
+          className="pointer-events-auto group inline-flex h-11 w-11 items-center justify-center gap-2 rounded-full bg-chocolate px-0 text-[0.62rem] leading-none tracking-[0.26em] text-ivory uppercase shadow-md transition-all duration-300 ease-out hover:scale-[1.03] hover:bg-espresso hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-3 min-[400px]:h-14 min-[400px]:w-auto min-[400px]:justify-start min-[400px]:px-5 sm:h-16"
         >
           <motion.span
             className="inline-flex"

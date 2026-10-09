@@ -15,7 +15,7 @@ export function Nav() {
       >
       <nav
         aria-label="Primary"
-        className="flex min-w-0 flex-1 items-center justify-between gap-2 min-[400px]:gap-4 rounded-full border border-border/70 bg-background/75 px-3 py-3 min-[400px]:px-5 backdrop-blur-md sm:px-8"
+        className="flex h-11 min-w-0 flex-1 items-center justify-between gap-2 min-[400px]:h-14 min-[400px]:gap-4 rounded-full border border-border/70 bg-background/75 px-3 min-[400px]:px-5 backdrop-blur-md sm:h-16 sm:px-8"
       >
         <a
           href="#top"
