@@ -40,20 +40,21 @@ export function PriceTicket({ value, tone = "light" }: { value: string; tone?: "
   const { label, amount } = splitPrice(value);
   const base =
     tone === "dark"
-      ? "border-ivory/30 text-ivory before:bg-chocolate"
-      : "border-espresso/35 text-foreground before:bg-background";
+      ? "border-ivory/30 text-ivory before:bg-chocolate hover:border-ivory hover:bg-ivory hover:text-chocolate hover:before:bg-ivory"
+      : "border-espresso/35 text-foreground before:bg-background hover:border-chocolate hover:bg-chocolate hover:text-ivory hover:before:bg-chocolate";
   return (
-    <span
-      className={`relative inline-flex items-baseline gap-2 border border-dashed py-1.5 pr-3 pl-4 ${base} before:absolute before:top-1/2 before:-left-[4px] before:h-[7px] before:w-[7px] before:-translate-y-1/2 before:rotate-45 before:border before:border-dashed before:border-inherit before:content-['']`}
+    <a
+      href={ORDER_HREF}
+      className={`group relative inline-flex items-baseline gap-2 border border-dashed py-1.5 pr-3 pl-4 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-3 ${base} before:absolute before:top-1/2 before:-left-[4px] before:h-[7px] before:w-[7px] before:-translate-y-1/2 before:rotate-45 before:border before:border-dashed before:border-inherit before:transition-colors before:duration-300 before:content-['']`}
       style={{ borderRadius: "2px" }}
     >
       {label && (
-        <span className="text-[0.6rem] tracking-[0.24em] text-muted-foreground uppercase">
+        <span className="text-[0.6rem] tracking-[0.24em] text-muted-foreground uppercase transition-colors duration-300 group-hover:text-current">
           {label}
         </span>
       )}
       <span className="text-sm tracking-[0.16em]">{amount}</span>
-    </span>
+    </a>
   );
 }
 
