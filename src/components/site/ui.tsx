@@ -81,7 +81,7 @@ export function PriceTickets({
 /* ---------- Stamped / tagged buttons ---------- */
 
 const stampBase =
-  "inline-flex items-center gap-2.5 px-8 py-3.5 text-[0.7rem] tracking-[0.28em] uppercase transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-3";
+  "inline-flex items-center gap-2.5 px-8 py-3.5 text-[0.7rem] tracking-[0.28em] uppercase transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-lg active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-3";
 
 export function StampLink({
   href,
@@ -98,7 +98,7 @@ export function StampLink({
 }) {
   const styles =
     variant === "solid"
-      ? "bg-ivory text-chocolate shadow-[inset_0_0_0_1px_var(--chocolate),inset_0_0_0_3px_var(--ivory)] hover:bg-cream active:bg-beige"
+      ? "bg-ivory text-chocolate shadow-[inset_0_0_0_1px_var(--chocolate),inset_0_0_0_3px_var(--ivory)] hover:bg-chocolate hover:text-ivory active:bg-espresso"
       : "border border-ivory/50 text-ivory hover:bg-ivory hover:text-chocolate active:bg-cream active:text-chocolate";
   return (
     <a
