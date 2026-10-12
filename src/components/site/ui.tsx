@@ -98,7 +98,7 @@ export function StampLink({
 }) {
   const styles =
     variant === "solid"
-      ? "bg-ivory text-chocolate shadow-[inset_0_0_0_1px_var(--chocolate),inset_0_0_0_3px_var(--ivory)] hover:bg-chocolate hover:text-ivory active:bg-espresso"
+      ? "bg-ivory text-chocolate shadow-[inset_0_0_0_1px_var(--chocolate),inset_0_0_0_3px_var(--ivory)] hover:bg-[#FFF4CD] hover:text-chocolate active:bg-[#FFEEB0] active:text-chocolate"
       : "border border-ivory/50 text-ivory hover:bg-ivory hover:text-chocolate active:bg-cream active:text-chocolate";
   return (
     <a
