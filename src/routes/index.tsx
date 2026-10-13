@@ -7,6 +7,7 @@ import { Reveal, StaggerList, ProductImage } from "@/components/site/reveal";
 import { Signature, SIGNATURE } from "@/components/site/signature";
 import { OrderTag, PriceTickets, StampLink, TwineRule, ORDER_HREF } from "@/components/site/ui";
 import { Parallax } from "@/components/site/parallax";
+import { Instagram, Facebook } from "lucide-react";
 
 import heroImg from "@/assets/hero.jpg";
 import heroVideo from "@/assets/hero.mp4";
@@ -846,8 +847,9 @@ function Invitation() {
                 href="https://instagram.com/dsaints.qa"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-ivory"
+                className="inline-flex items-center gap-2 hover:text-ivory sm:flex-row"
               >
+                <Instagram className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
                 Instagram @dsaints.qa
               </a>
             </li>
@@ -856,8 +858,9 @@ function Invitation() {
                 href="https://facebook.com/DsaintsFood"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-ivory"
+                className="inline-flex items-center gap-2 hover:text-ivory sm:flex-row"
               >
+                <Facebook className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
                 Facebook DsaintsFood
               </a>
             </li>
