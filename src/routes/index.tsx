@@ -7,7 +7,7 @@ import { Reveal, StaggerList, ProductImage } from "@/components/site/reveal";
 import { Signature, SIGNATURE } from "@/components/site/signature";
 import { OrderTag, PriceTickets, StampLink, TwineRule, ORDER_HREF } from "@/components/site/ui";
 import { Parallax } from "@/components/site/parallax";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook, Phone } from "lucide-react";
 
 import heroImg from "@/assets/hero.jpg";
 import heroVideo from "@/assets/hero.mp4";
@@ -829,18 +829,20 @@ function Invitation() {
 
         <div className="mt-10 grid gap-8 text-sm text-cream/75 sm:grid-cols-2">
           <address className="space-y-1 not-italic">
-            <p>Doha, Qatar</p>
-            <p>
-              <a href="tel:+97455881795" className="hover:text-ivory">
-                +974 5588 1795
-              </a>
-            </p>
-            <p>
-              <a href="tel:+97455423214" className="hover:text-ivory">
-                +974 5542 3214
-              </a>
-            </p>
-          </address>
+          <p>Doha, Qatar</p>
+          <p>
+            <a href="tel:+97455881795" className="inline-flex items-center gap-2 hover:text-ivory">
+              <Phone className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
+              +974 5588 1795
+            </a>
+          </p>
+          <p>
+            <a href="tel:+97455423214" className="inline-flex items-center gap-2 hover:text-ivory">
+              <Phone className="h-4 w-4" strokeWidth={1.4} aria-hidden="true" />
+              +974 5542 3214
+            </a>
+          </p>
+        </address>
           <ul className="space-y-1 sm:text-right">
             <li>
               <a
